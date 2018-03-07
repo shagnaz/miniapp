@@ -1,0 +1,51 @@
+<div class="row"> <!-- row class bootstrap -->
+  <div class="col-md-6 col-md-offset-3">
+  <!-- col itu column md itu tipe layar 6 itu ukuran panjang nya  -->
+  <!-- col md offset 3 ada tambahan samping kanan dan kiri jadi 3663  -->
+
+  <!-- untuk search -->
+
+
+<!-- salah disini -->
+    <div class="thread">
+      <h3><%#= link_to thread.title.titleize, forum_thread_path(thread) %></h3><!-- #titlelize syntax rails untuk judul agar huruf besar di depan -->
+      <h3><%= @forum_thread.title.titleize %></h3>
+
+      <div class="date">
+        <%= @forum_thread.created_at %> oleh <%= @forum_thread.user.name %>
+        <!-- strftime untuk mengganti format date -->
+      </div>
+      <div class="content">
+        <%= @forum_thread.content %>
+      </div>
+     
+
+      <div style="clear: both;"></div>
+    </div>
+
+    <% if @forum_thread.forum_posts.any? %>
+    <!-- apakah ada post di thread? -->
+        <% @forum_thread.forum_posts.each do |post| %>
+        <div class="thread">
+          <div class="date">
+            <%= post.created_at %> oleh <%= post.user.name %>
+          </div>
+          <div class="content">
+            <%= post.content %>
+          </div>
+
+        </div>
+      <% end %>
+    <% else %>
+    <div>
+      jadilah yang pertama comment
+    </div>
+      
+    <% end %>
+    
+      
+    
+
+    
+  </div>
+</div>
